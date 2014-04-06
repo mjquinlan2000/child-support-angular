@@ -1,0 +1,121 @@
+<form role="form" ng-controller="MainCtrl">
+  <div class="content">
+    <div class="row">
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label># of Children</label>
+          <input type="number" class="form-control" ng-model="support.numChildren"/>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label># Overnights</label>
+          <input type="number" class="form-control" ng-model="support.numOvernights"/>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Monthly Income</label>
+          <input type="number" class="form-control" ng-model="support.income"/>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Spouse Monthly Income</label>
+          <input type="number" class="form-control" ng-model="support.spouseIncome"/>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Maintenance Paid</label>
+          <input type="number" class="form-control" ng-model="support.maintenancePaid"/>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Maintenance Received</label>
+          <input type="number" class="form-control" ng-model="support.maintenanceReceived"/>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Child Support (Other Union)</label>
+          <input type="number" class="form-control" ng-model="support.childOther"/>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Spouse Child Support (Other Union)</label>
+          <input type="number" class="form-control" ng-model="support.childSpouse"/>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Child Expenses (Other Union)</label>
+          <input type="number" class="form-control" ng-model="support.childExp"/>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Spouse Child Expenses (Other Union)</label>
+          <input type="number" class="form-control" ng-model="support.childExpSpouse"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-lg-12">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th>Adjusted Monthly</th>
+                <td>{{calculated.adjustedIncome}}</td>
+              </tr>
+              <tr>
+                <th>Spouse Adjusted</th>
+                <td>{{calculated.spouseAdjustedIncome}}</td>
+              </tr>
+              <tr>
+                <th>Combined</th>
+                <td>{{calculated.combinedAdjustedIncome}}</td>
+              </tr>
+              <tr>
+                <th>Your Percentage</th>
+                <td>{{display.percentIncome}}%</td>
+              </tr>
+              <tr>
+                <th>Spouse Percentage</th>
+                <td>{{display.spousePercentIncome}}%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Spouse Child Expenses (Other Union)</label>
+          <input type="number" class="form-control"/>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Spouse Child Expenses (Other Union)</label>
+          <input type="number" class="form-control"/>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Spouse Child Expenses (Other Union)</label>
+          <input type="number" class="form-control"/>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Spouse Child Expenses (Other Union)</label>
+          <input type="number" class="form-control"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
