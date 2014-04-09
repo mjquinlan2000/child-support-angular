@@ -64,72 +64,94 @@
           <input type="number" class="form-control" ng-model="support.childExpSpouse"/>
         </div>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col col-lg-12">
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <th>Adjusted Monthly</th>
-                <td>{{calculated.adjustedIncome}}</td>
-              </tr>
-              <tr>
-                <th>Spouse Adjusted</th>
-                <td>{{calculated.spouseAdjustedIncome}}</td>
-              </tr>
-              <tr>
-                <th>Combined</th>
-                <td>{{calculated.combinedAdjustedIncome}}</td>
-              </tr>
-              <tr>
-                <th>Your Percentage</th>
-                <td>{{display.percentIncome}}%</td>
-              </tr>
-              <tr>
-                <th>Spouse Percentage</th>
-                <td>{{display.spousePercentIncome}}%</td>
-              </tr>
-              <tr>
-                <th>Child Support Obligation</th>
-                <td>{{calculated.supportObligation}}</td>
-              </tr>
-              <tr>
-                <th>Your Obligation Share</th>
-                <td>{{display.obligationShare}}</td>
-              </tr>
-              <tr>
-                <th>Spouse Obligation Share</th>
-                <td>{{display.spouseObligationShare}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="row">
+      <div class="col col-lg-12">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>Adjusted Monthly</th>
+              <td>{{calculated.adjustedIncome}}</td>
+            </tr>
+            <tr>
+              <th>Spouse Adjusted</th>
+              <td>{{calculated.spouseAdjustedIncome}}</td>
+            </tr>
+            <tr>
+              <th>Combined</th>
+              <td>{{calculated.combinedAdjustedIncome}}</td>
+            </tr>
+            <tr>
+              <th>Your Percentage</th>
+              <td>{{display.percentIncome}}%</td>
+            </tr>
+            <tr>
+              <th>Spouse Percentage</th>
+              <td>{{display.spousePercentIncome}}%</td>
+            </tr>
+            <tr>
+              <th>Child Support Obligation</th>
+              <td>{{calculated.supportObligation}}</td>
+            </tr>
+            <tr>
+              <th>Your Obligation Share</th>
+              <td>{{display.obligationShare}}</td>
+            </tr>
+            <tr>
+              <th>Spouse Obligation Share</th>
+              <td>{{display.spouseObligationShare}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
 
+    <div class="row">
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Other Adjustments</label>
+          <input type="number" class="form-control" ng-model="support.otherAdjustments"/>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>Spouse Other Adjustments</label>
+          <input type="number" class="form-control" ng-model="support.spouseOtherAdjustments"/>
+        </div>
+      </div>
+    </div>
 
-      <div class="col col-sm-12 col-md-6 col-lg-6">
-        <div class="form-group">
-          <label>Spouse Child Expenses (Other Union)</label>
-          <input type="number" class="form-control"/>
-        </div>
-      </div>
-      <div class="col col-sm-12 col-md-6 col-lg-6">
-        <div class="form-group">
-          <label>Spouse Child Expenses (Other Union)</label>
-          <input type="number" class="form-control"/>
-        </div>
-      </div>
-      <div class="col col-sm-12 col-md-6 col-lg-6">
-        <div class="form-group">
-          <label>Spouse Child Expenses (Other Union)</label>
-          <input type="number" class="form-control"/>
-        </div>
-      </div>
-      <div class="col col-sm-12 col-md-6 col-lg-6">
-        <div class="form-group">
-          <label>Spouse Child Expenses (Other Union)</label>
-          <input type="number" class="form-control"/>
-        </div>
+    <div class="row">
+      <div class="col col-sm-12">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>Your Adjustment Share</th>
+              <td>{{display.adjustmentShare}}</td>
+            </tr>
+            <tr>
+              <th>Spouse Adjustment Share</th>
+              <td>{{display.spouseAdjustmentShare}}</td>
+            </tr>
+            <tr>
+              <th>Your Total Child Support</th>
+              <td>{{display.totalSupport}}</th>
+            </tr>
+            <tr>
+              <th>Spouse Total Child Support</th>
+              <td>{{display.spouseTotalSupport}}</th>
+            </tr>
+            <tr>
+              <th>Your Support Order</th>
+              <td>{{display.supportOrder}}</th>
+            </tr>
+            <tr>
+              <th>Spouse Support Order</th>
+              <td>{{display.spouseSupportOrder}}</th>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

@@ -14,9 +14,10 @@ angular.module('childSupportApp')
         childExp: 0,
         childExpSpouse: 0,
         spouseIncome: 0,
-        income: 0
+        income: 0,
+        otherAdjustments: 0,
+        spouseOtherAdjustments: 0
       };
-
 
       $scope.calculated = {
         spouseAdjustedIncome: 0,
@@ -26,20 +27,33 @@ angular.module('childSupportApp')
         obligationShare: 0,
         spouseObligationShare: 0,
         percentageIncome: 0,
-        spousePercentageIncome: 0
+        spousePercentageIncome: 0,
+        adjustmentShare: 0,
+        spouseAdjustmentShare: 0,
+        combinedAdjustments: 0,
+        totalSupport: 0,
+        spouseTotalSupport: 0
       };
 
       $scope.display = {
         percentIncome: 0,
         spousePercentIncome: 0,
         obligationShare: 0,
-        spouseObligationShare: 0
+        spouseObligationShare: 0,
+        adjustmentShare: 0,
+        spouseAdjustmentShare: 0,
+        combinedAdjustments: 0,
+        totalSupport: 0,
+        spouseTotalSupport: 0
       };
     };
 
     $scope.calculateSupport = function() {
       $scope.adjustedGrossIncome();
       $scope.determineSchedule();
+      $scope.determineAdjustments();
+      $scope.calculateTotalSupport();
+      $scope.calculateSupportOrder();
       localStorage.setItem('support', JSON.stringify($scope.support));
     };
 
@@ -79,6 +93,39 @@ angular.module('childSupportApp')
 
       $scope.display.obligationShare = $scope.calculated.obligationShare.toFixed(2);
       $scope.display.spouseObligationShare = $scope.calculated.spouseObligationShare.toFixed(2);
+    };
+
+    $scope.determineAdjustments = function() {
+      var combinedAdjustments = $scope.support.otherAdjustments + $scope.support.spouseOtherAdjustments;
+
+      $scope.calculated.adjustmentShare = combinedAdjustments * $scope.calculated.percentageIncome;
+      $scope.calculated.spouseAdjustmentShare = combinedAdjustments * $scope.calculated.spousePercentageIncome;
+      $scope.calculated.combinedAdjustments = combinedAdjustments;
+
+      $scope.display.adjustmentShare = $scope.calculated.adjustmentShare.toFixed(2);
+      $scope.display.spouseAdjustmentShare = $scope.calculated.spouseAdjustmentShare.toFixed(2);
+      $scope.display.combinedAdjustments = $scope.calculated.combinedAdjustments.toFixed(2);
+    };
+
+    $scope.calculateTotalSupport = function() {
+      var totalSupport = $scope.calculated.adjustmentShare + $scope.calculated.obligationShare,
+        spouseTotalSupport = $scope.calculated.spouseAdjustmentShare + $scope.calculated.spouseObligationShare;
+
+      $scope.calculated.totalSupport = totalSupport;
+      $scope.calculated.spouseTotalSupport = spouseTotalSupport;
+      $scope.display.totalSupport = totalSupport.toFixed(2);
+      $scope.display.spouseTotalSupport = spouseTotalSupport.toFixed(2);
+    };
+
+    $scope.calculateSupportOrder = function() {
+      var supportOrder = $scope.calculated.totalSupport - $scope.support.otherAdjustments,
+        spouseSupportOrder = $scope.calculated.spouseTotalSupport - $scope.support.spouseOtherAdjustments;
+
+      $scope.calculated.supportOrder = supportOrder;
+      $scope.calculated.spouseSupportOrder = spouseSupportOrder;
+
+      $scope.display.supportOrder = supportOrder.toFixed(2);
+      $scope.display.spouseSupportOrder = spouseSupportOrder.toFixed(2);
     };
 
     $scope.initialize();
