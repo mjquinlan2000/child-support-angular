@@ -5,7 +5,7 @@ angular.module('childSupportApp')
 
     $scope.initialize = function() {
       $scope.support = {
-        numChildren: 0,
+        numChildren: 1,
         numOvernights: 0,
         maintenancePaid: 0,
         maintenanceReceived: 0,
