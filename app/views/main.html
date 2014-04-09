@@ -1,6 +1,9 @@
 <form role="form" ng-controller="MainCtrl">
   <div class="content">
     <div class="row">
+      <div class="btn btn-lg btn-primary" ng-click="initialize()">RESET</div>
+    </div>
+    <div class="row">
       <div class="col col-sm-12 col-md-6 col-lg-6">
         <div class="form-group">
           <label># of Children</label>
@@ -85,6 +88,18 @@
               <tr>
                 <th>Spouse Percentage</th>
                 <td>{{display.spousePercentIncome}}%</td>
+              </tr>
+              <tr>
+                <th>Child Support Obligation</th>
+                <td>{{calculated.supportObligation}}</td>
+              </tr>
+              <tr>
+                <th>Your Obligation Share</th>
+                <td>{{display.obligationShare}}</td>
+              </tr>
+              <tr>
+                <th>Spouse Obligation Share</th>
+                <td>{{display.spouseObligationShare}}</td>
               </tr>
             </tbody>
           </table>
