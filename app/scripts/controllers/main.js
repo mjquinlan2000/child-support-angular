@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('childSupportApp')
-  .controller('MainCtrl', function ($scope, SUPPORT_SCHEDULE_2014) {
+  .controller('MainCtrl', function ($scope, Utilities, SUPPORT_SCHEDULE_2014) {
 
     $scope.initialize = function() {
       $scope.support = {
