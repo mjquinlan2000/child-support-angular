@@ -71,36 +71,54 @@
         <table class="table table-bordered">
           <tbody>
             <tr>
-              <th>Adjusted Monthly</th>
+              <th>Your Adjusted Monthly Income</th>
               <td>{{calculated.adjustedIncome}}</td>
             </tr>
             <tr>
-              <th>Spouse Adjusted</th>
+              <th>Spouse's Adjusted Monthly Income</th>
               <td>{{calculated.spouseAdjustedIncome}}</td>
             </tr>
             <tr>
-              <th>Combined</th>
+              <th>Combined Adjusted Monthly Income</th>
               <td>{{calculated.combinedAdjustedIncome}}</td>
             </tr>
             <tr>
-              <th>Your Percentage</th>
+              <th>Your Percentage of Income</th>
               <td>{{display.percentIncome}}%</td>
             </tr>
             <tr>
-              <th>Spouse Percentage</th>
+              <th>Spouse's Percentage of Income</th>
               <td>{{display.spousePercentIncome}}%</td>
             </tr>
             <tr>
-              <th>Child Support Obligation</th>
+              <th>Total Child Support Obligation</th>
               <td>{{calculated.supportObligation}}</td>
             </tr>
             <tr>
-              <th>Your Obligation Share</th>
+              <th>Your Child Support Obligation</th>
               <td>{{display.obligationShare}}</td>
             </tr>
             <tr>
-              <th>Spouse Obligation Share</th>
+              <th>Spouse's Child Support Obligation</th>
               <td>{{display.spouseObligationShare}}</td>
+            </tr>
+
+            <tr>
+              <th>Your Overnight Percentage</th>
+              <td>{{display.percentageTime}}%</td>
+            </tr>
+            <tr>
+              <th>Spouse's Overnight Percentage</th>
+              <td>{{display.spousePercentageTime}}%</td>
+            </tr>
+
+            <tr>
+              <th>Your Obligation With Time</th>
+              <td>{{display.obligationTime}}</td>
+            </tr>
+            <tr>
+              <th>Spouse's Obligation With Time</th>
+              <td>{{display.spouseObligationTime}}</td>
             </tr>
           </tbody>
         </table>
@@ -110,7 +128,7 @@
     <div class="row">
       <div class="col col-sm-12 col-md-6 col-lg-6">
         <div class="form-group">
-          <label>Other Adjustments</label>
+          <label>Your Other Adjustments</label>
           <input type="number" class="form-control" ng-model="support.otherAdjustments"/>
         </div>
       </div>

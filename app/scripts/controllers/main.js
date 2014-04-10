@@ -32,7 +32,11 @@ angular.module('childSupportApp')
         spouseAdjustmentShare: 0,
         combinedAdjustments: 0,
         totalSupport: 0,
-        spouseTotalSupport: 0
+        spouseTotalSupport: 0,
+        percentageTime: 0,
+        spousePercentageTime: 0,
+        obligationTime: 0,
+        spouseObligationTime: 0
       };
 
       $scope.display = {
@@ -44,13 +48,18 @@ angular.module('childSupportApp')
         spouseAdjustmentShare: 0,
         combinedAdjustments: 0,
         totalSupport: 0,
-        spouseTotalSupport: 0
+        spouseTotalSupport: 0,
+        percentageTime: 0,
+        spousePercentageTime: 0,
+        obligationTime: 0,
+        spouseObligationTime: 0
       };
     };
 
     $scope.calculateSupport = function() {
       $scope.adjustedGrossIncome();
       $scope.determineSchedule();
+      $scope.determineOvernights();
       $scope.determineAdjustments();
       $scope.calculateTotalSupport();
       $scope.calculateSupportOrder();
@@ -88,6 +97,11 @@ angular.module('childSupportApp')
       numChildren = Math.min($scope.support.numChildren, 6);
 
       $scope.calculated.supportObligation = scheduleEntry[numChildren];
+
+      if(Utilities.useWorksheetB($scope.support.numOvernights)) {
+        $scope.calculated.supportObligation *= 1.5;
+      }
+
       $scope.calculated.obligationShare = $scope.calculated.supportObligation * $scope.calculated.percentageIncome;
       $scope.calculated.spouseObligationShare = $scope.calculated.supportObligation * $scope.calculated.spousePercentageIncome;
 
@@ -126,6 +140,18 @@ angular.module('childSupportApp')
 
       $scope.display.supportOrder = supportOrder.toFixed(2);
       $scope.display.spouseSupportOrder = spouseSupportOrder.toFixed(2);
+    };
+
+    $scope.determineOvernights = function() {
+      $scope.calculated.percentageTime = $scope.support.numOvernights / 365;
+      $scope.calculated.spousePercentageTime = 1 - $scope.calculated.percentageTime;
+      $scope.calculated.obligationTime = $scope.calculated.percentageTime * $scope.calculated.spouseObligationShare;
+      $scope.calculated.spouseObligationTime = $scope.calculated.spousePercentageTime * $scope.calculated.obligationShare;
+
+      $scope.display.percentageTime = Math.round($scope.calculated.percentageTime*100);
+      $scope.display.spousePercentageTime = Math.round($scope.calculated.spousePercentageTime*100);
+      $scope.display.obligationTime = $scope.calculated.obligationTime.toFixed(2);
+      $scope.display.spouseObligationTime = $scope.calculated.spouseObligationTime.toFixed(2);
     };
 
     $scope.initialize();
