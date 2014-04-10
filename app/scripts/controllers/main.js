@@ -122,24 +122,50 @@ angular.module('childSupportApp')
     };
 
     $scope.calculateTotalSupport = function() {
-      var totalSupport = $scope.calculated.adjustmentShare + $scope.calculated.obligationShare,
-        spouseTotalSupport = $scope.calculated.spouseAdjustmentShare + $scope.calculated.spouseObligationShare;
+      if(Utilities.useWorksheetA($scope.support.numOvernights)) {
+        var totalSupport = $scope.calculated.adjustmentShare + $scope.calculated.obligationShare,
+          spouseTotalSupport = $scope.calculated.spouseAdjustmentShare + $scope.calculated.spouseObligationShare;
 
-      $scope.calculated.totalSupport = totalSupport;
-      $scope.calculated.spouseTotalSupport = spouseTotalSupport;
-      $scope.display.totalSupport = totalSupport.toFixed(2);
-      $scope.display.spouseTotalSupport = spouseTotalSupport.toFixed(2);
+        $scope.calculated.totalSupport = totalSupport;
+        $scope.calculated.spouseTotalSupport = spouseTotalSupport;
+        $scope.display.totalSupport = totalSupport.toFixed(2);
+        $scope.display.spouseTotalSupport = spouseTotalSupport.toFixed(2);
+      } else {
+        var adjustmentsFairShare = Math.max($scope.support.otherAdjustments - $scope.calculated.adjustmentShare, 0),
+          spouseAdjustmentsFairShare = Math.max($scope.support.spouseOtherAdjustments - $scope.calculated.spouseAdjustmentShare, 0);
+
+        $scope.calculated.totalSupport = $scope.calculated.obligationTime - adjustmentsFairShare;
+        $scope.calculated.spouseTotalSupport = $scope.calculated.spouseObligationTime - spouseAdjustmentsFairShare;
+
+        $scope.display.totalSupport = $scope.calculated.totalSupport.toFixed(2);
+        $scope.display.spouseTotalSupport = $scope.calculated.spouseTotalSupport.toFixed(2);
+      }
     };
 
     $scope.calculateSupportOrder = function() {
-      var supportOrder = $scope.calculated.totalSupport - $scope.support.otherAdjustments,
-        spouseSupportOrder = $scope.calculated.spouseTotalSupport - $scope.support.spouseOtherAdjustments;
+      if(Utilities.useWorksheetA($scope.support.numOvernights)) {
+        var supportOrder = $scope.calculated.totalSupport - $scope.support.otherAdjustments,
+          spouseSupportOrder = $scope.calculated.spouseTotalSupport - $scope.support.spouseOtherAdjustments;
 
-      $scope.calculated.supportOrder = supportOrder;
-      $scope.calculated.spouseSupportOrder = spouseSupportOrder;
+        $scope.calculated.supportOrder = supportOrder;
+        $scope.calculated.spouseSupportOrder = spouseSupportOrder;
 
-      $scope.display.supportOrder = supportOrder.toFixed(2);
-      $scope.display.spouseSupportOrder = spouseSupportOrder.toFixed(2);
+        if(Utilities.youHaveMajority($scope.support.numOvernights)) {
+          $scope.display.whoPays = "Spouse Pays";
+          $scope.display.supportOrderAmount = $scope.calculated.spouseSupportOrder.toFixed(2);
+        } else {
+          $scope.display.whoPays = "You Pay";
+          $scope.display.supportOrderAmount = $scope.calculated.supportOrder.toFixed(2);
+        }
+      } else {
+        if($scope.calculated.totalSupport > $scope.calculated.spouseTotalSupport) {
+          $scope.display.whoPays = 'Spouse Pays';
+        } else {
+          $scope.display.whoPays = 'You Pay';
+        }
+
+        $scope.display.supportOrderAmount = Math.abs($scope.calculated.totalSupport - $scope.calculated.spouseTotalSupport).toFixed(2);
+      }
     };
 
     $scope.determineOvernights = function() {
