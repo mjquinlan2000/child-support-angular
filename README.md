@@ -1,4 +1,4 @@
-# Mike Quinlan's Child Support Calculator
+# CO Child Support Calculator
 
 This application is developed to calculate child support for the state of Colorado ONLY. This was built using Yeoman, Grunt, Bower, Node, Bootstrap, and AngularJS.
 
